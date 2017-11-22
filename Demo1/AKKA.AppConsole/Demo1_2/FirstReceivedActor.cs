@@ -32,15 +32,24 @@ namespace AKKA.Demo.Library
         }
         private void ShortStringMessage(string msg)
         {
-            Console.WriteLine($"Short Message:{msg} \nreceived by {Context.Self.Path}\n");
+            Console.WriteLine($"Short Message:{msg} " +
+                              $"\nreceived by {Context.Self.Path}" +
+                              $"\nsender {Sender.Path}"+
+                              $"\n");
         }
         private void StringMessage(string msg)
         {
-            Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");
+            Console.WriteLine($"Message:{msg} " +
+                              $"\nreceived by {Context.Self.Path}" +
+                              $"\nsender {Sender.Path}" +
+                              $"\n");
         }
         private void HandleSimpleMessage(SimpleMessage msg)
         {
-            Console.WriteLine($"Message:{msg.Value} \nreceived by {Context.Self.Path}\n");
+            Console.WriteLine($"Message:{msg.Value} " +
+                              $"\nreceived by {Context.Self.Path}" +
+                              $"\nsender {Sender.Path}" +
+                              $"\n");
         }
     }
 }

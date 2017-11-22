@@ -37,8 +37,14 @@
     <Reference Include="Akka, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Akka.1.3.2\lib\net45\Akka.dll</HintPath>
     </Reference>
+    <Reference Include="Akka.Persistence, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Akka.Persistence.1.3.2\lib\net45\Akka.Persistence.dll</HintPath>
+    </Reference>
     <Reference Include="Akka.Serialization.Hyperion, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Akka.Serialization.Hyperion.1.3.2-beta54\lib\net45\Akka.Serialization.Hyperion.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.3.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Google.Protobuf.3.3.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="Hyperion, Version=0.9.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Hyperion.0.9.6\lib\net45\Hyperion.dll</HintPath>
@@ -67,30 +73,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo1_2_Base\FirstUntypedActor.cs" />
-    <Compile Include="Demo1_2_Base\FirstReceivedActor.cs" />
-    <Compile Include="Demo1_2_Base\SimpleMessage.cs" />
+    <Compile Include="Demo1_2\FirstUntypedActor.cs" />
+    <Compile Include="Demo1_2\FirstReceivedActor.cs" />
+    <Compile Include="Demo1_2\SimpleMessage.cs" />
     <Compile Include="Demo3\SenderUntypedActor.cs" />
     <Compile Include="Demo3\SimpleActorSystem.cs" />
-    <Compile Include="DemoGeneral\Actors\SimpleReceiveActor.cs" />
-    <Compile Include="DemoGeneral\Actors\ResponseActor.cs" />
-    <Compile Include="DemoGeneral\Akka\ReceiveActorBase.cs" />
-    <Compile Include="DemoGeneral\Messages\AkkaMessageBase.cs" />
-    <Compile Include="DemoGeneral\Messages\DummyMessage.cs" />
-    <Compile Include="DemoGeneral\Utilities\ILogger.cs" />
-    <Compile Include="DemoGeneral\Akka\ActorReference.cs" />
-    <Compile Include="DemoGeneral\Akka\ActorsSystem.cs" />
-    <Compile Include="DemoGeneral\Utilities\TracerXLogger.cs" />
-    <Compile Include="DemoGeneral\Utilities\DictionaryExtensions.cs" />
+    <Compile Include="Demo4\Actors\SimpleSubActor1.cs" />
+    <Compile Include="Demo4\Actors\SimplePersistentActor.cs" />
+    <Compile Include="Demo4\Actors\SimpleSubActor2.cs" />
+    <Compile Include="Demo4\Actors\SimpleActor.cs" />
+    <Compile Include="Demo4\Akka.NET\ActorReference.cs" />
+    <Compile Include="Demo4\Akka.NET\ActorsSystem.cs" />
+    <Compile Include="Demo4\Akka.NET\ReceiveActorBase.cs" />
+    <Compile Include="Demo4\Akka.NET\UntypedPersistentActorBase.cs" />
+    <Compile Include="Demo4\Akka.NET\UntypedActorBase.cs" />
+    <Compile Include="Demo4\Messages\RaiseExceptionMessage.cs" />
+    <Compile Include="Demo4\Messages\ActorMessage.cs" />
+    <Compile Include="Demo4\Messages\AkkaMessageBase.cs" />
+    <Compile Include="_DemoGeneral\Actors\SimpleReceiveActor.cs" />
+    <Compile Include="_DemoGeneral\Actors\ResponseActor.cs" />
+    <Compile Include="_DemoGeneral\Akka\ReceiveActorBase.cs" />
+    <Compile Include="_DemoGeneral\Messages\AkkaMessageBase.cs" />
+    <Compile Include="_DemoGeneral\Messages\DummyMessage.cs" />
+    <Compile Include="_DemoGeneral\Akka\ActorReference.cs" />
+    <Compile Include="_DemoGeneral\Akka\ActorsSystem.cs" />
     <Compile Include="Program - Copy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DemoGeneral\Messages\AskMessage.cs" />
-    <Compile Include="DemoGeneral\Messages\RequestMessage.cs" />
-    <Compile Include="DemoGeneral\Messages\ResponseMessage.cs" />
-    <Compile Include="DemoGeneral\Actors\SimpleActor.cs" />
-    <Compile Include="DemoGeneral\Utilities\StringExtensions.cs" />
-    <Compile Include="DemoGeneral\Akka\UntypedActorBase.cs" />
+    <Compile Include="_DemoGeneral\Messages\AskMessage.cs" />
+    <Compile Include="_DemoGeneral\Messages\RequestMessage.cs" />
+    <Compile Include="_DemoGeneral\Messages\ResponseMessage.cs" />
+    <Compile Include="_DemoGeneral\Actors\SimpleActor.cs" />
+    <Compile Include="_DemoGeneral\Akka\UntypedActorBase.cs" />
+    <Compile Include="Utilities\DictionaryExtensions.cs" />
+    <Compile Include="Utilities\ILogger.cs" />
+    <Compile Include="Utilities\StringExtensions.cs" />
+    <Compile Include="Utilities\TracerXLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

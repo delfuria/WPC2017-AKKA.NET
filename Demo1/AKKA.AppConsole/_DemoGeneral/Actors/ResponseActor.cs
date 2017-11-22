@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Akka.Actor;
 using System.Threading;
 
-namespace AKKA.AppConsole
+namespace AKKA.AppConsole1
 {
     public class ResponseActor : UntypedActorBase
     {

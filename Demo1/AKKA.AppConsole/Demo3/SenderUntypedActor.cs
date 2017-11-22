@@ -10,10 +10,30 @@ namespace AKKA.Demo.Library
     public class SenderUntypedActor : UntypedActor
     {
         private IActorRef _firstUntyped;
+        public IActorRef FirstUntyped
+        {
+            get
+            {
+                if (_firstUntyped == null)
+                    _firstUntyped = Context.ActorSelection($"/user/FirstUntypedActor")
+                                            .ResolveOne(TimeSpan.FromSeconds(2))
+                                            .Result;
+
+                return _firstUntyped;
+            }
+            private set { _firstUntyped = value; }
+        }
+
+        public SenderUntypedActor()
+
+        {
+        }
+
         public SenderUntypedActor(IActorRef firstUntyped)
         {
-            _firstUntyped = firstUntyped;
+            FirstUntyped = firstUntyped;
         }
+
 
         protected override void OnReceive(object message)
         {
@@ -37,9 +57,11 @@ namespace AKKA.Demo.Library
             //Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");
             Console.WriteLine($"Message:{msg.Value} " +
                               $"\nreceived by {Context.Self.Path}" +
-                              $"\nforwarded to {_firstUntyped.Path}\n");
-            _firstUntyped.Forward(msg);
-            
+                              $"\nsender {Sender.Path}" +
+                              $"\nforwarded to {FirstUntyped.Path}" +
+                              $"\n");
+            FirstUntyped.Tell(msg);
+
         }
     }
 }

@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AKKA.AppConsole
+namespace AKKA.Demo.Library
 {
     [ToString]
-    public class AkkaMessageBase
+    public class RaiseExceptionMessage : AkkaMessageBase
     {
-        public DateTime TimeStamp => DateTime.Now.ToUniversalTime();
     }
 }

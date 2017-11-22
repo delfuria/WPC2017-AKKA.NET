@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AKKA.AppConsole
+namespace AKKA.AppConsole1
 {
-    public class DummyMessage : AkkaMessageBase
+    public class ResponseMessage : AkkaMessageBase
     {
+        public int Number { get; set; }
     }
 }

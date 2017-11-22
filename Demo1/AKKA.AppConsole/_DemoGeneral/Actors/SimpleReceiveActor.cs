@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Akka.Actor;
 
-namespace AKKA.AppConsole
+namespace AKKA.AppConsole1
 {
     public class SimpleReceiveActor : ReceiveActorBase
     {

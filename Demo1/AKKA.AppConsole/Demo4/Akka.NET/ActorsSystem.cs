@@ -8,7 +8,7 @@ using Akka.Actor;
 using Akka.Configuration;
 using AKKA.Utilities;
 
-namespace AKKA.AppConsole
+namespace AKKA.Demo.Library
 {
     public class ActorsSystem
     {
@@ -65,7 +65,7 @@ namespace AKKA.AppConsole
             _defaultConfig = ConfigurationFactory.ParseString(@"
                     akka {
                     loglevel = DEBUG
-                    loggers = [""AKKA.AppConsole.TracerXLogger, AKKA.AppConsole""]
+                    loggers = [""AKKA.Utilities.TracerXLogger, AKKA.AppConsole""]
                         actor
                         {
                             debug
@@ -85,7 +85,6 @@ namespace AKKA.AppConsole
                     }
                     }");
         }
-
 
         public static void Add(ActorReference reference, IActorRef act)
         {

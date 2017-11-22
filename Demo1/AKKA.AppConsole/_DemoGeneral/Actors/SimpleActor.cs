@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Akka.Actor;
 
-namespace AKKA.AppConsole
+namespace AKKA.AppConsole1
 {
     public class SimpleActor : UntypedActorBase
     {
@@ -19,8 +19,10 @@ namespace AKKA.AppConsole
             this.SetReceiveTimeout(timeout);
         }
 
-        public static Props CreateProps(Guid id)
+        public static Props CreateProps(Guid id = new Guid())
         {
+            if (id == Guid.Empty)
+                id = Guid.NewGuid();
             return Props.Create(() => new SimpleActor(id));
         }
 

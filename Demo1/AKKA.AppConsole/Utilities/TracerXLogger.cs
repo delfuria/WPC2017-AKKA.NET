@@ -1,11 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="TracerXLogger.cs" company="MobileFX Project">
-//     Copyright (C) 2009-2016 Typesafe Inc. <http://www.typesafe.com>
-//     Copyright (C) 2013-2016 Akka.NET project <https://github.com/akkadotnet/akka.net>
-// </copyright>
-//-----------------------------------------------------------------------
-
-using System;
+﻿using System;
 using Akka.Actor;
 using Akka.Dispatch;
 using Akka.Event;
@@ -14,24 +7,24 @@ using TracerX;
 
 namespace AKKA.Utilities
 {
-    public class TracerXLogger : ReceiveActor, IRequiresMessageQueue<ILoggerMessageQueueSemantics>, ILogReceive
+    public class TracerXLogger : ReceiveActor,
+                                 IRequiresMessageQueue<ILoggerMessageQueueSemantics>,
+                                ILogReceive
     {
         private readonly ILoggingAdapter _log = Context.GetLogger();
         private static Logger _logger;
         private static Logger GetLogger(LogEvent logEvent)
         {
+            if (_logger == null)
             {
-                if (_logger == null)
-                {
-                    _logger = Logger.GetLogger(logEvent.LogClass.FullName);
-                    if (!Logger.DefaultBinaryFile.IsOpen)
-                        Logger.DefaultBinaryFile.Open();
-                    if (!Logger.DefaultTextFile.IsOpen)
-                        Logger.DefaultTextFile.Open();
-                    Logger.Root.BinaryFileTraceLevel = TraceLevel.Verbose;
-                }
-                return _logger;
+                _logger = Logger.GetLogger(logEvent.LogClass.FullName);
+                if (!Logger.DefaultBinaryFile.IsOpen)
+                    Logger.DefaultBinaryFile.Open();
+                if (!Logger.DefaultTextFile.IsOpen)
+                    Logger.DefaultTextFile.Open();
+                Logger.Root.BinaryFileTraceLevel = TraceLevel.Verbose;
             }
+            return _logger;
         }
         private static void Log(LogEvent logEvent, Action<Logger, string> logStatement)
         {

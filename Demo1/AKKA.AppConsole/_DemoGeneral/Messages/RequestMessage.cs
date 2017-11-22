@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AKKA.AppConsole
+namespace AKKA.AppConsole1
 {
-    public class AskMessage : AkkaMessageBase
+    public class RequestMessage : AkkaMessageBase
     {
         public int Number { get; set; }
-
     }
 }

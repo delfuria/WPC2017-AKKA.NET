@@ -8,10 +8,6 @@ namespace AKKA.Demo.Library
 {
     public class SimpleMessage
     {
-        public string Value { get; private set; }
-        public SimpleMessage(string value)
-        {
-            Value = value;
-        }
+        public string Value { get;  set; }
     }
 }

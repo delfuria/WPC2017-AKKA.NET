@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.Event;
 
-namespace AKKA.AppConsole
+namespace AKKA.Demo.Library
 {
-    public abstract class ReceiveActorBase : ReceiveActor
+    public abstract class UntypedActorBase : UntypedActor
     {
-        private readonly ILoggingAdapter logger = Logging.GetLogger(Context);
+
+        protected readonly ILoggingAdapter logger = Logging.GetLogger(Context);
         protected Guid _id = Guid.Empty;
         public abstract string Alias { get; }
-        protected ReceiveActorBase()
+        protected UntypedActorBase()
         {
-            logger.Info("Actor Created:{0}", GetType());
+            logger.Info($"Actor Created:{GetType()}");
         }
 
         protected override void PreRestart(Exception reason, object message)
         {
             base.PreRestart(reason, message);
-            logger.Info("Actor PreRestart:{0}", GetType());
+            logger.Info($"Actor PreRestart:{GetType()}");
         }
 
         protected override void PreStart()
         {
             base.PreStart();
             ActorsSystem.Add(new ActorReference(Alias, _id), Self);
-            logger.Info("Actor PreStart:{0}", GetType());
+            logger.Info($"Actor PreStart:{GetType()}");
             ActorInitialize();
         }
 
@@ -36,21 +37,26 @@ namespace AKKA.AppConsole
         {
             base.PostRestart(reason);
             ActorsSystem.Add(new ActorReference(Alias, _id), Self);
-            logger.Error(string.Format("Actor PostRestart:{0} - {1}",reason.ToString(), GetType()));
+            logger.Error($"Actor PostRestart:{reason} - {GetType()}");
             //ActorInitialize();
         }
 
         protected override void Unhandled(object message)
         {
             base.Unhandled(message);
-            logger.Debug("Actor:{0} Unhandled message of type:{1} - Content:{2}", Alias, GetType(), message?.ToString());
+            logger.Debug($"Actor:{Alias} Unhandled message of type:{GetType()} - Content:{message?.ToString()}");
         }
 
         protected override void PostStop()
         {
             base.PostStop();
             ActorsSystem.Remove(new ActorReference(Alias, _id), Self);
-            logger.Info("Actor PostStop::{0}", GetType());
+            logger.Info($"Actor PostStop::{GetType()}");
+        }
+
+        protected override void OnReceive(object message)
+        {
+            logger.Info($"Actor:{Self.Path} received Message:{message?.ToString()}");
         }
 
         protected abstract void ActorInitialize();

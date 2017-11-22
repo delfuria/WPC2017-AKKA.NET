@@ -22,12 +22,11 @@ namespace AKKA.Demo.Library
                 case SimpleMessage msg:
                     HandleSimpleMessage(msg);
                     break;
+                case string str when str.Length < 5:
+                    ShortStringMessage(str);
+                    break;
                 case string str:
-                    if (str.Length < 5)
-                        ShortStringMessage(str);
-                    else
-                        StringMessage(str);
-
+                    StringMessage(str);
                     break;
                 default:
                     break;
@@ -41,12 +40,16 @@ namespace AKKA.Demo.Library
 
         private void ShortStringMessage(string msg)
         {
-            Console.WriteLine($"Short Message:{msg}\nrom {Context.Self.Path}\n");
+            Console.WriteLine($"Short Message:{msg}" +
+                              $"\nreceived by {Context.Self.Path}" +
+                              $"\nsender {Sender.Path}\n");
         }
         private void StringMessage(string msg)
         {
             //Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");
-            Console.WriteLine($"Hello:{_hello} - Message:{msg} \nreceived by {Context.Self.Path}\n");
+            Console.WriteLine($"Hello:{_hello} - Message:{msg} " +
+                              $"\nreceived by {Context.Self.Path}" +
+                              $"\nsender {Sender.Path}\n");
         }
         private void HandleSimpleMessage(SimpleMessage msg)
         {
