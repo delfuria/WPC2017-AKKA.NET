@@ -40,6 +40,9 @@ namespace AKKA.Library.Demo
                 case BackOfficeRaiseExceptionMessage msg:
                     HandleBackOfficeRaiseExceptionMessage(msg);
                     break;
+                case RequestMessage msg:
+                    HandleRequestMessage(msg);
+                    break;
             }
         }
 
@@ -91,6 +94,30 @@ namespace AKKA.Library.Demo
             sub1.Tell(msg);
 
         }
+
+        private async Task HandleRequestMessage(RequestMessage msg)
+        {
+            Console.WriteLine("before Ask");
+
+            //var selector = Context.ActorSelection("../*");
+            //var res = selector.ResolveOne(TimeSpan.FromMilliseconds(10)).Result;
+            var actor = Context.ActorSelection("akka://AKKA-NET/user/ResponseActor").ResolveOne(TimeSpan.Zero).Result;
+            //actor.Tell(new RequestMessage());
+            //var resp = await actor.Ask(new RequestMessage());//.PipeTo(Self);
+            try
+
+            {
+                var resp = await actor.Ask(new RequestMessage() { Number = msg.Number });//, TimeSpan.FromSeconds(2));//.PipeTo(Self);
+                Console.WriteLine(((ResponseMessage)resp).Number);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Eccezione timeout");
+            }
+            Console.WriteLine("Ask");
+
+        }
+
 
         protected override void ActorInitialize()
         {

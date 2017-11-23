@@ -1,5 +1,6 @@
 ﻿using Akka.Actor;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,10 +25,29 @@ namespace AKKA.AppConsole
 			//Demo6BackSupervision();
 			//Demo7Router();
 			//Demo8Persistence();
+			//Demo9Ask();
 			Console.ReadLine();
 		}
 
+		private static async void Demo9Ask()
+		{
+			Console.WriteLine("Press enter to ask response");
+			Console.ReadLine();
+			var responseActor = ActorsSystem.Instance.ActorOf(ResponseActor.CreateProps(), "ResponseActor");
+			try
+			{
+				//var res = await responseActor.Ask(new RequestMessage() { Number = -10 });
+				var res = await responseActor.Ask(new RequestMessage() { Number = -10 }, TimeSpan.FromSeconds(2));
+				var responseNumber = ((ResponseMessage)res).Number;
+				Console.WriteLine($"Response1:{responseNumber}");
 
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(ex.Message);
+			}
+			Console.ReadLine();
+		}
 		private static void Demo8Persistence()
 		{
 			var simple = ActorsSystem.Instance.ActorOf(SimplePersistentActor.CreateProps(), "SimplePersistentActor");

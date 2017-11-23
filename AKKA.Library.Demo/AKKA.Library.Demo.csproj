@@ -89,6 +89,9 @@
     <Compile Include="Demo4\Messages\AkkaMessageBase.cs" />
     <Compile Include="Demo4\Messages\BackOfficeRaiseExceptionMessage.cs" />
     <Compile Include="Demo4\Messages\RaiseExceptionMessage.cs" />
+    <Compile Include="Demo9\RequestMessage.cs" />
+    <Compile Include="Demo9\ResponseActor.cs" />
+    <Compile Include="Demo9\ResponseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
     <Compile Include="Utilities\ILogger.cs" />
