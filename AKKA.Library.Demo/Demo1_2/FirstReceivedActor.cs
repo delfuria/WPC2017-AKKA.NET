@@ -9,44 +9,40 @@ namespace AKKA.Library.Demo
 {
     public class FirstReceivedActor : ReceiveActor
     {
-        private string _hello;
+        private string _prefix;
         public FirstReceivedActor()
         {
-            Receive<string>(msg => msg.Length < 5, msg => ShortStringMessage(msg));
-            Receive<string>(msg => StringMessage(msg));
+            Receive<string>(msg => msg.Length < 5, msg => HandleShortStringMessage(msg));
+            Receive<string>(msg => HandleStringMessage(msg));
             Receive<SimpleMessage>(msg => HandleSimpleMessage(msg));
 
         }
-        public FirstReceivedActor(string hello)
+        public FirstReceivedActor(string prefix):this()
         {
-            _hello = hello;
-            Receive<string>(msg => msg.Length < 5, msg => ShortStringMessage(msg));
-            Receive<string>(msg => StringMessage(msg));
-            Receive<SimpleMessage>(msg => HandleSimpleMessage(msg));
-
+            _prefix = prefix;
         }
 
         public static Props Props(string hello)
         {
             return Akka.Actor.Props.Create(() => new FirstReceivedActor(hello));
         }
-        private void ShortStringMessage(string msg)
+        private void HandleShortStringMessage(string msg)
         {
-            Console.WriteLine($"Short Message:{msg} " +
+            Console.WriteLine($"Short string:{msg} " +
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}"+
                               $"\n");
         }
-        private void StringMessage(string msg)
+        private void HandleStringMessage(string msg)
         {
-            Console.WriteLine($"Message:{msg} " +
+            Console.WriteLine($"string:{msg} " +
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}" +
                               $"\n");
         }
         private void HandleSimpleMessage(SimpleMessage msg)
         {
-            Console.WriteLine($"Message:{msg.Value} " +
+            Console.WriteLine($"Prefix:{_prefix} - Message:{msg.Value} " +
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}" +
                               $"\n");

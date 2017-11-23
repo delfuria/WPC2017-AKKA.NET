@@ -57,7 +57,6 @@ namespace AKKA.Library.Demo
             }
         }
 
-
         static SimpleActorSystem()
         {
             _defaultConfig = ConfigurationFactory.ParseString(@"

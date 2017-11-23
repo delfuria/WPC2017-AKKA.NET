@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKKA.AppConsole.Remote.Clie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKKA.AppConsole", "AKKA.AppConsole\AKKA.AppConsole.csproj", "{D5A82A41-B5EE-467A-A804-C54C8957C4A1}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Slide", "Slide", "{C0B448B6-D913-47FF-8974-2686C0993947}"
+	ProjectSection(SolutionItems) = preProject
+		DEV012.pptx = DEV012.pptx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

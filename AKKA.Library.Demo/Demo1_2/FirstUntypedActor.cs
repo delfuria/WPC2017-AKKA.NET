@@ -10,6 +10,9 @@ namespace AKKA.Library.Demo
     public class FirstUntypedActor : UntypedActor
     {
         private string _prefix = "";
+        public FirstUntypedActor()
+        {
+        }
         public FirstUntypedActor(string prefix)
         {
             _prefix = prefix;
@@ -23,10 +26,10 @@ namespace AKKA.Library.Demo
                     HandleSimpleMessage(msg);
                     break;
                 case string str when str.Length < 5:
-                    ShortStringMessage(str);
+                    HandleShortStringMessage(str);
                     break;
                 case string str:
-                    StringMessage(str);
+                    HandleStringMessage(str);
                     break;
                 default:
                     break;
@@ -38,16 +41,16 @@ namespace AKKA.Library.Demo
             return Akka.Actor.Props.Create(() => new FirstUntypedActor(hello));
         }
 
-        private void ShortStringMessage(string msg)
+        private void HandleShortStringMessage(string msg)
         {
-            Console.WriteLine($"Short Message:{msg}" +
+            Console.WriteLine($"Short string:{msg}" +
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}\n");
         }
-        private void StringMessage(string msg)
+        private void HandleStringMessage(string msg)
         {
             //Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");
-            Console.WriteLine($"Prefix:{_prefix} - Message:{msg} " +
+            Console.WriteLine($"string:{msg} " +
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}\n");
         }
