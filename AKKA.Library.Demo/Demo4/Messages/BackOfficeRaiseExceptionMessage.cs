@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AKKA.Demo.Library
+namespace AKKA.Library.Demo
 {
     [ToString]
     public class BackOfficeRaiseExceptionMessage : AkkaMessageBase

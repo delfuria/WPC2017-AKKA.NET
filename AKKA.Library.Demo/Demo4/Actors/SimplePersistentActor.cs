@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.Persistence;
 
-namespace AKKA.Demo.Library
+namespace AKKA.Library.Demo
 {
     public class SimplePersistentActor : UntypedPersistenActorBase
     {

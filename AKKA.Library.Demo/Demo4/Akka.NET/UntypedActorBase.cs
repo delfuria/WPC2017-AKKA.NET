@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.Event;
 
-namespace AKKA.Demo.Library
+namespace AKKA.Library.Demo
 {
     public abstract class UntypedActorBase : UntypedActor
     {

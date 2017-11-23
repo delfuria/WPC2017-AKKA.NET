@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Akka.Actor;
 
-namespace AKKA.Demo.Library
+namespace AKKA.Library.Demo
 {
     public class SenderUntypedActor : UntypedActor
     {

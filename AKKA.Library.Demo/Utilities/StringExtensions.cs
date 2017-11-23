@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace AKKA.Utilities
+namespace AKKA.Library.Demo
 {
     public static class StringExtensions
     {

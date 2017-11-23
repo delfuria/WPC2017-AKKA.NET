@@ -73,43 +73,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo1_2\FirstUntypedActor.cs" />
-    <Compile Include="Demo1_2\FirstReceivedActor.cs" />
-    <Compile Include="Demo1_2\SimpleMessage.cs" />
-    <Compile Include="Demo3\SenderUntypedActor.cs" />
-    <Compile Include="Demo3\SimpleActorSystem.cs" />
-    <Compile Include="Demo4\Actors\SimpleSubActor1.cs" />
-    <Compile Include="Demo4\Actors\SimplePersistentActor.cs" />
-    <Compile Include="Demo4\Actors\SimpleSubActor2.cs" />
-    <Compile Include="Demo4\Actors\SimpleActor.cs" />
-    <Compile Include="Demo4\Akka.NET\ActorReference.cs" />
-    <Compile Include="Demo4\Akka.NET\ActorsSystem.cs" />
-    <Compile Include="Demo4\Akka.NET\ReceiveActorBase.cs" />
-    <Compile Include="Demo4\Akka.NET\UntypedPersistentActorBase.cs" />
-    <Compile Include="Demo4\Akka.NET\UntypedActorBase.cs" />
-    <Compile Include="Demo4\Messages\BackOfficeRaiseExceptionMessage.cs" />
-    <Compile Include="Demo4\Messages\RaiseExceptionMessage.cs" />
-    <Compile Include="Demo4\Messages\ActorMessage.cs" />
-    <Compile Include="Demo4\Messages\AkkaMessageBase.cs" />
-    <Compile Include="_DemoGeneral\Actors\SimpleReceiveActor.cs" />
-    <Compile Include="_DemoGeneral\Actors\ResponseActor.cs" />
-    <Compile Include="_DemoGeneral\Akka\ReceiveActorBase.cs" />
-    <Compile Include="_DemoGeneral\Messages\AkkaMessageBase.cs" />
-    <Compile Include="_DemoGeneral\Messages\DummyMessage.cs" />
-    <Compile Include="_DemoGeneral\Akka\ActorReference.cs" />
-    <Compile Include="_DemoGeneral\Akka\ActorsSystem.cs" />
     <Compile Include="Program - Copy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_DemoGeneral\Messages\AskMessage.cs" />
-    <Compile Include="_DemoGeneral\Messages\RequestMessage.cs" />
-    <Compile Include="_DemoGeneral\Messages\ResponseMessage.cs" />
-    <Compile Include="_DemoGeneral\Actors\SimpleActor.cs" />
-    <Compile Include="_DemoGeneral\Akka\UntypedActorBase.cs" />
-    <Compile Include="Utilities\DictionaryExtensions.cs" />
-    <Compile Include="Utilities\ILogger.cs" />
-    <Compile Include="Utilities\StringExtensions.cs" />
-    <Compile Include="Utilities\TracerXLogger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

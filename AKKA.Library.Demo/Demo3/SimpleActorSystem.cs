@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Akka.Actor;
 using Akka.Configuration;
-using AKKA.Utilities;
+using AKKA.Library.Demo;
 
-namespace AKKA.Demo.Library
+namespace AKKA.Library.Demo
 {
     public class SimpleActorSystem
     {
@@ -63,7 +63,7 @@ namespace AKKA.Demo.Library
             _defaultConfig = ConfigurationFactory.ParseString(@"
                     akka {
                     loglevel = DEBUG
-                    loggers = [""AKKA.AppConsole.TracerXLogger, AKKA.AppConsole""]
+                    loggers = [""AKKA.Library.Demo.TracerXLogger, AKKA.Library.Demo""]
                         actor
                         {
                             debug

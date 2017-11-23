@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKKA.AppConsole", "Demo1\AK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKKA.Library.Demo", "AKKA.Library.Demo\AKKA.Library.Demo.csproj", "{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKKA.AppConsole.Remote", "AKKA.AppConsole.Remote\AKKA.AppConsole.Remote.csproj", "{E963F6C1-31D8-41C9-8EBF-7CCC4FE31D9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKKA.AppConsole.Remote.Client", "AKKA.AppConsole.Remote.Client\AKKA.AppConsole.Remote.Client.csproj", "{D7E45719-0316-4220-B096-6E2D1DC3C7F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E963F6C1-31D8-41C9-8EBF-7CCC4FE31D9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E963F6C1-31D8-41C9-8EBF-7CCC4FE31D9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E963F6C1-31D8-41C9-8EBF-7CCC4FE31D9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E963F6C1-31D8-41C9-8EBF-7CCC4FE31D9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7E45719-0316-4220-B096-6E2D1DC3C7F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E45719-0316-4220-B096-6E2D1DC3C7F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E45719-0316-4220-B096-6E2D1DC3C7F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E45719-0316-4220-B096-6E2D1DC3C7F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

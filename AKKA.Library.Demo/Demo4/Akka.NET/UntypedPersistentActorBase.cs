@@ -7,7 +7,7 @@ using Akka.Actor;
 using Akka.Event;
 using Akka.Persistence;
 
-namespace AKKA.Demo.Library
+namespace AKKA.Library.Demo
 {
     public abstract class UntypedPersistenActorBase : UntypedPersistentActor
     {

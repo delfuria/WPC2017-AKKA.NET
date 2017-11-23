@@ -8,7 +8,7 @@ using Akka.Actor;
 using Akka.Pattern;
 using Akka.Routing;
 
-namespace AKKA.Demo.Library
+namespace AKKA.Library.Demo
 {
     public class SimpleActor : UntypedActorBase
     {
@@ -28,6 +28,9 @@ namespace AKKA.Demo.Library
             base.OnReceive(message);
             switch (message)
             {
+                case SimpleMessage msg:
+                    HandleSimpleMessage(msg);
+                    break;
                 case ActorMessage msg:
                     HandleActorMessage(msg);
                     break;
@@ -38,6 +41,13 @@ namespace AKKA.Demo.Library
                     HandleBackOfficeRaiseExceptionMessage(msg);
                     break;
             }
+        }
+
+        private void HandleSimpleMessage(SimpleMessage msg)
+        {
+            Console.WriteLine($"SimpleMessage received {msg.Value}");
+            Console.WriteLine($"path {Self.Path}");
+            Console.WriteLine($"sender {Sender.Path}");
         }
 
         protected override SupervisorStrategy SupervisorStrategy()
@@ -68,7 +78,6 @@ namespace AKKA.Demo.Library
         {
             throw new NotImplementedException();
         }
-
 
         private void HandleRaiseExceptionMessage(RaiseExceptionMessage msg)
         {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AKKA.Utilities
+namespace AKKA.Library.Demo
 {
     public interface ILogger
     {

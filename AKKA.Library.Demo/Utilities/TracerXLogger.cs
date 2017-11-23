@@ -5,7 +5,7 @@ using Akka.Event;
 using AkkaLogLevel = TracerX.TraceLevel;
 using TracerX;
 
-namespace AKKA.Utilities
+namespace AKKA.Library.Demo
 {
     public class TracerXLogger : ReceiveActor,
                                  IRequiresMessageQueue<ILoggerMessageQueueSemantics>,

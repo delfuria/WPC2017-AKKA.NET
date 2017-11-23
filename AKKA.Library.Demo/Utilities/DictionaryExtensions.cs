@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AKKA.Utilities
+namespace AKKA.Library.Demo
 {
     public static class DictionaryExtensions
     {
