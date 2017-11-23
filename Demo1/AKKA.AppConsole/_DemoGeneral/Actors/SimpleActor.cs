@@ -12,18 +12,15 @@ namespace AKKA.AppConsole1
     {
         public override string Alias => "SimpleActor";
 
-        public SimpleActor(Guid id)
+        public SimpleActor()
         {
-            _id = id;
             var timeout = TimeSpan.FromSeconds(3);
             this.SetReceiveTimeout(timeout);
         }
 
-        public static Props CreateProps(Guid id = new Guid())
+        public static Props CreateProps()
         {
-            if (id == Guid.Empty)
-                id = Guid.NewGuid();
-            return Props.Create(() => new SimpleActor(id));
+            return Props.Create(() => new SimpleActor());
         }
 
 

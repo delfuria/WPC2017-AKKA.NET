@@ -20,13 +20,14 @@ namespace AKKA.AppConsole
             //Demo2Props();
             //Demo3SimpleActorSystem();
             //Demo4FullSystem();
-            //Demo5BackSupervision(); // Non funziona
-            //Demo6Router();
-            Demo7Persistence();
+            //Demo5Supervision();
+            //Demo6BackSupervision();
+            //Demo7Router();
+            //Demo8Persistence();
             Console.ReadLine();
         }
 
-        private static void Demo7Persistence()
+        private static void Demo8Persistence()
         {
             var simple = ActorsSystem.Instance.ActorOf(SimplePersistentActor.CreateProps(), "SimplePersistentActor");
             Console.WriteLine("Press enter to start");
@@ -40,8 +41,7 @@ namespace AKKA.AppConsole
             simple.Tell(new ActorMessage(10));
             Console.ReadLine();
         }
-
-        private static void Demo6Router()
+        private static void Demo7Router()
         {
             var props = SimpleActor.CreateProps().WithRouter(new RoundRobinPool(2));
             var simple = ActorsSystem.Instance.ActorOf(props, "SimpleActor");
@@ -57,23 +57,38 @@ namespace AKKA.AppConsole
             simple.Tell(new ActorMessage(40));
             Console.ReadLine();
         }
-
-
-        private static void Demo5BackSupervision()
+        private static void Demo6BackSupervision()
         {
-            // Per oa non funziona
             var childProps = SimpleActor.CreateProps();
 
             var supervisor = BackoffSupervisor.Props(
                 Backoff.OnFailure(
                         childProps: childProps,
                         childName: "SimpleActor",
-                        minBackoff: TimeSpan.FromSeconds(10),
+                        minBackoff: TimeSpan.FromSeconds(5),
                         maxBackoff: TimeSpan.FromSeconds(60),
                         randomFactor: 0.2)
                     .WithAutoReset(TimeSpan.FromSeconds(160)));
 
             var simple = ActorsSystem.Instance.ActorOf(supervisor, "SimpleActor:Supervisor");
+
+            Console.WriteLine("Press enter to start");
+            Console.ReadLine();
+            simple.Tell(new BackOfficeRaiseExceptionMessage());
+            Console.WriteLine("Exception Raised");
+            Console.ReadLine();
+            simple.Tell(new BackOfficeRaiseExceptionMessage());
+            Console.WriteLine("Exception Raised");
+            Console.ReadLine();
+            simple.Tell(new BackOfficeRaiseExceptionMessage());
+            Console.WriteLine("Exception Raised");
+            Console.ReadLine();
+
+        }
+        private static void Demo5Supervision()
+        {
+            var simple = ActorsSystem.Instance.ActorOf(SimpleActor.CreateProps(), "SimpleActor");
+
 
             Console.WriteLine("Press enter to start");
             Console.ReadLine();
@@ -110,7 +125,6 @@ namespace AKKA.AppConsole
             Console.ReadLine();
 
         }
-
         private static void Demo3SimpleActorSystem()
         {
             SimpleActorSystem.Name = "Demo-Akka";
@@ -138,27 +152,11 @@ namespace AKKA.AppConsole
 
             Console.ReadLine();
 
-            senderUntypedActor.Tell(new SimpleMessage(){Value = "To forward"});
+            senderUntypedActor.Tell(new SimpleMessage() { Value = "To forward" });
 
 
         }
-
-        static void Demo1Simple()
-        {
-            ActorSystem system = ActorSystem.Create("MySystem");
-
-            IActorRef firstReceivedActor = system.ActorOf<FirstReceivedActor>("FirstReceivedActor");
-            IActorRef firstUntypedActor = system.ActorOf<FirstReceivedActor>("FirstUntypedActor");
-
-            firstReceivedActor.Tell("My 1st Message");
-            firstReceivedActor.Tell("1st");
-            firstReceivedActor.Tell(new SimpleMessage(){Value = "bye"});
-
-            firstUntypedActor.Tell("My 1st Message");
-            firstUntypedActor.Tell("1st");
-            firstUntypedActor.Tell(new SimpleMessage() {Value = "Bye"});
-        }
-        static void Demo2Props()
+        private static void Demo2Props()
         {
             ActorSystem system = ActorSystem.Create("MySystem");
 
@@ -170,6 +168,21 @@ namespace AKKA.AppConsole
 
             firstUntypedActor.Tell("My 1st Message");
             firstUntypedActor.Tell("1st");
+        }
+        private static void Demo1Simple()
+        {
+            ActorSystem system = ActorSystem.Create("MySystem");
+
+            IActorRef firstReceivedActor = system.ActorOf<FirstReceivedActor>("FirstReceivedActor");
+            IActorRef firstUntypedActor = system.ActorOf<FirstReceivedActor>("FirstUntypedActor");
+
+            firstReceivedActor.Tell("My 1st Message");
+            firstReceivedActor.Tell("1st");
+            firstReceivedActor.Tell(new SimpleMessage() { Value = "bye" });
+
+            firstUntypedActor.Tell("My 1st Message");
+            firstUntypedActor.Tell("1st");
+            firstUntypedActor.Tell(new SimpleMessage() { Value = "Bye" });
         }
     }
 }

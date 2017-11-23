@@ -10,9 +10,8 @@ using AKKA.Utilities;
 
 namespace AKKA.Demo.Library
 {
-    public class ActorsSystem
+    public class SimpleActorSystem
     {
-        public static readonly ConcurrentDictionary<string, IActorRef> Actors;
         private static Config _defaultConfig;
         private static Config _config;
         public static Config Config
@@ -59,13 +58,12 @@ namespace AKKA.Demo.Library
         }
 
 
-        static ActorsSystem()
+        static SimpleActorSystem()
         {
-            Actors = new ConcurrentDictionary<string, IActorRef>();
             _defaultConfig = ConfigurationFactory.ParseString(@"
                     akka {
                     loglevel = DEBUG
-                    loggers = [""AKKA.Utilities.TracerXLogger, AKKA.AppConsole""]
+                    loggers = [""AKKA.AppConsole.TracerXLogger, AKKA.AppConsole""]
                         actor
                         {
                             debug
@@ -85,16 +83,5 @@ namespace AKKA.Demo.Library
                     }
                     }");
         }
-
-        public static void Add(string reference, IActorRef act)
-        {
-            Actors.AddOrUpdate(reference, act);
-        }
-
-        public static bool Remove(string reference, IActorRef act)
-        {
-            return Actors.TryRemove(reference, out act);
-        }
-
     }
 }

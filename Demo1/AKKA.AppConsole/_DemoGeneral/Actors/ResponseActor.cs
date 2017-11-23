@@ -13,14 +13,13 @@ namespace AKKA.AppConsole1
     {
         public override string Alias => "ResponseActor";
 
-        public ResponseActor(Guid id)
+        public ResponseActor()
         {
-            _id = id;
         }
 
-        public static Props CreateProps(Guid id)
+        public static Props CreateProps()
         {
-            return Props.Create(() => new ResponseActor(id));
+            return Props.Create(() => new ResponseActor());
         }
 
 

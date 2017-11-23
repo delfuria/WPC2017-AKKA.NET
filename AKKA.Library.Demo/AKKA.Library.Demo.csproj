@@ -4,18 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D5A82A41-B5EE-467A-A804-C54C8957C4A1}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>AKKA.AppConsole</RootNamespace>
-    <AssemblyName>AKKA.AppConsole</AssemblyName>
+    <ProjectGuid>{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AKKA.Library.Demo</RootNamespace>
+    <AssemblyName>AKKA.Library.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,7 +24,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -35,26 +33,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Akka, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Akka.1.3.2\lib\net45\Akka.dll</HintPath>
+      <HintPath>..\packages\Akka.1.3.2\lib\net45\Akka.dll</HintPath>
     </Reference>
     <Reference Include="Akka.Persistence, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Akka.Persistence.1.3.2\lib\net45\Akka.Persistence.dll</HintPath>
+      <HintPath>..\packages\Akka.Persistence.1.3.2\lib\net45\Akka.Persistence.dll</HintPath>
     </Reference>
     <Reference Include="Akka.Serialization.Hyperion, Version=1.3.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Akka.Serialization.Hyperion.1.3.2-beta54\lib\net45\Akka.Serialization.Hyperion.dll</HintPath>
+      <HintPath>..\packages\Akka.Serialization.Hyperion.1.3.2-beta54\lib\net45\Akka.Serialization.Hyperion.dll</HintPath>
     </Reference>
     <Reference Include="Google.Protobuf, Version=3.3.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Google.Protobuf.3.3.0\lib\net45\Google.Protobuf.dll</HintPath>
+      <HintPath>..\packages\Google.Protobuf.3.3.0\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="Hyperion, Version=0.9.6.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Hyperion.0.9.6\lib\net45\Hyperion.dll</HintPath>
+      <HintPath>..\packages\Hyperion.0.9.6\lib\net45\Hyperion.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
+      <HintPath>..\packages\System.Collections.Immutable.1.3.1\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -65,71 +63,50 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
     <Reference Include="ToString, Version=1.8.0.0, Culture=neutral, PublicKeyToken=15432f00798e61a4, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ToString.Fody.1.8.0\lib\dotnet\ToString.dll</HintPath>
+      <HintPath>..\packages\ToString.Fody.1.8.0\Lib\dotnet\ToString.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="TracerX-Logger, Version=6.1.1304.13122, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\TracerX-Logger.6.1\lib\TracerX-Logger.dll</HintPath>
+      <HintPath>..\packages\TracerX-Logger.6.1\lib\TracerX-Logger.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo1_2\FirstUntypedActor.cs" />
     <Compile Include="Demo1_2\FirstReceivedActor.cs" />
+    <Compile Include="Demo1_2\FirstUntypedActor.cs" />
     <Compile Include="Demo1_2\SimpleMessage.cs" />
     <Compile Include="Demo3\SenderUntypedActor.cs" />
     <Compile Include="Demo3\SimpleActorSystem.cs" />
-    <Compile Include="Demo4\Actors\SimpleSubActor1.cs" />
-    <Compile Include="Demo4\Actors\SimplePersistentActor.cs" />
-    <Compile Include="Demo4\Actors\SimpleSubActor2.cs" />
     <Compile Include="Demo4\Actors\SimpleActor.cs" />
+    <Compile Include="Demo4\Actors\SimplePersistentActor.cs" />
+    <Compile Include="Demo4\Actors\SimpleSubActor1.cs" />
+    <Compile Include="Demo4\Actors\SimpleSubActor2.cs" />
     <Compile Include="Demo4\Akka.NET\ActorReference.cs" />
     <Compile Include="Demo4\Akka.NET\ActorsSystem.cs" />
     <Compile Include="Demo4\Akka.NET\ReceiveActorBase.cs" />
-    <Compile Include="Demo4\Akka.NET\UntypedPersistentActorBase.cs" />
     <Compile Include="Demo4\Akka.NET\UntypedActorBase.cs" />
-    <Compile Include="Demo4\Messages\BackOfficeRaiseExceptionMessage.cs" />
-    <Compile Include="Demo4\Messages\RaiseExceptionMessage.cs" />
+    <Compile Include="Demo4\Akka.NET\UntypedPersistentActorBase.cs" />
     <Compile Include="Demo4\Messages\ActorMessage.cs" />
     <Compile Include="Demo4\Messages\AkkaMessageBase.cs" />
-    <Compile Include="_DemoGeneral\Actors\SimpleReceiveActor.cs" />
-    <Compile Include="_DemoGeneral\Actors\ResponseActor.cs" />
-    <Compile Include="_DemoGeneral\Akka\ReceiveActorBase.cs" />
-    <Compile Include="_DemoGeneral\Messages\AkkaMessageBase.cs" />
-    <Compile Include="_DemoGeneral\Messages\DummyMessage.cs" />
-    <Compile Include="_DemoGeneral\Akka\ActorReference.cs" />
-    <Compile Include="_DemoGeneral\Akka\ActorsSystem.cs" />
-    <Compile Include="Program - Copy.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Demo4\Messages\BackOfficeRaiseExceptionMessage.cs" />
+    <Compile Include="Demo4\Messages\RaiseExceptionMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="_DemoGeneral\Messages\AskMessage.cs" />
-    <Compile Include="_DemoGeneral\Messages\RequestMessage.cs" />
-    <Compile Include="_DemoGeneral\Messages\ResponseMessage.cs" />
-    <Compile Include="_DemoGeneral\Actors\SimpleActor.cs" />
-    <Compile Include="_DemoGeneral\Akka\UntypedActorBase.cs" />
     <Compile Include="Utilities\DictionaryExtensions.cs" />
     <Compile Include="Utilities\ILogger.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Utilities\TracerXLogger.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\AKKA.Library.Demo\AKKA.Library.Demo.csproj">
-      <Project>{2a1aa274-180e-4f8e-8739-e3ec9c74b4ce}</Project>
-      <Name>AKKA.Library.Demo</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\packages\Fody.2.0.0\build\dotnet\Fody.targets" Condition="Exists('..\..\packages\Fody.2.0.0\build\dotnet\Fody.targets')" />
+  <Import Project="..\packages\Fody.2.2.0\build\netstandard1.2\Fody.targets" Condition="Exists('..\packages\Fody.2.2.0\build\netstandard1.2\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Fody.2.0.0\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Fody.2.0.0\build\dotnet\Fody.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.2.2.0\build\netstandard1.2\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.2.0\build\netstandard1.2\Fody.targets'))" />
   </Target>
 </Project>

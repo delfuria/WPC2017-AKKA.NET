@@ -12,9 +12,8 @@ namespace AKKA.AppConsole1
     {
         public override string Alias => "ResponseActor";
 
-        public SimpleReceiveActor(Guid id)
+        public SimpleReceiveActor()
         {
-            _id = id;
             ReceiveAsync<RequestMessage>(async (t) =>
             {
                   await HandleRequestMessage(t);
@@ -22,9 +21,9 @@ namespace AKKA.AppConsole1
 
         }
 
-        public static Props CreateProps(Guid id)
+        public static Props CreateProps()
         {
-            return Props.Create(() => new SimpleReceiveActor(id));
+            return Props.Create(() => new SimpleReceiveActor());
         }
 
         private async Task<ResponseMessage> HandleRequestMessage(RequestMessage msg)

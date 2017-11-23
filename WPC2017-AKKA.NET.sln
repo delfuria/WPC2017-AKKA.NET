@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKKA.AppConsole", "Demo1\AKKA.AppConsole\AKKA.AppConsole.csproj", "{D5A82A41-B5EE-467A-A804-C54C8957C4A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKKA.Library.Demo", "AKKA.Library.Demo\AKKA.Library.Demo.csproj", "{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D5A82A41-B5EE-467A-A804-C54C8957C4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5A82A41-B5EE-467A-A804-C54C8957C4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5A82A41-B5EE-467A-A804-C54C8957C4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A1AA274-180E-4F8E-8739-E3EC9C74B4CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
