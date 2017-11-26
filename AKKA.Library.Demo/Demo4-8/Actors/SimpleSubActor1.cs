@@ -42,7 +42,7 @@ namespace AKKA.Library.Demo
             _value += msg.Value;
             Console.WriteLine($"The current state is now {_value}");
             Console.WriteLine($"path {Self.Path}");
-            Console.WriteLine($"randomID {_id}");
+            Console.WriteLine($"randomUID {Self.Path.Uid}");
             Console.WriteLine($"sender {Sender.Path}\n" );
         }
 

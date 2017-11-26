@@ -17,13 +17,13 @@ namespace AKKA.AppConsole
     {
         static void Main(string[] args)
         {
-            //Demo1Simple();
+            Demo1Simple();
             //Demo2Props();
             //Demo3SimpleActorSystem();
             //Demo4FullSystem();
             //Demo5Supervision();
             //Demo6BackSupervision();
-            Demo7Persistence();
+            //Demo7Persistence();
             //Demo8Router();
             //Demo10Ask();
             Console.ReadLine();

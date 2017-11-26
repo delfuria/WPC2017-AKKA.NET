@@ -80,7 +80,6 @@
     <Compile Include="Demo4-8\Actors\SimplePersistentActor.cs" />
     <Compile Include="Demo4-8\Actors\SimpleSubActor1.cs" />
     <Compile Include="Demo4-8\Actors\SimpleSubActor2.cs" />
-    <Compile Include="Demo4-8\Akka.NET\ActorReference.cs" />
     <Compile Include="Demo4-8\Akka.NET\ActorsSystem.cs" />
     <Compile Include="Demo4-8\Akka.NET\ReceiveActorBase.cs" />
     <Compile Include="Demo4-8\Akka.NET\UntypedActorBase.cs" />

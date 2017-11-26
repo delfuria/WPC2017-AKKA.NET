@@ -12,12 +12,10 @@ namespace AKKA.Library.Demo
     {
 
         protected readonly ILoggingAdapter logger = Logging.GetLogger(Context);
-        protected readonly Guid _id;
         public abstract string Alias { get; }
         protected UntypedActorBase()
         {
-            _id = Guid.NewGuid();
-            logger.Info($"Actor Created:{GetType()}");
+            logger.Info($"Actor Created:{GetType()} - UID:{Context.Self.Path.Uid}");
         }
 
         protected override void PreRestart(Exception reason, object message)
