@@ -14,6 +14,7 @@ namespace AKKA.Library.Demo
     {
         public override string Alias => "SimpleActor";
 
+        public int State { get; private set; }
         public SimpleActor()
         {
         }
@@ -34,6 +35,9 @@ namespace AKKA.Library.Demo
                 case ActorMessage msg:
                     HandleActorMessage(msg);
                     break;
+                case ChangeStateMessage msg:
+                    HandleChangeStateMessage(msg);
+                    break;
                 case ExceptionMessage msg:
                     HandleExceptionMessage(msg);
                     break;
@@ -47,6 +51,11 @@ namespace AKKA.Library.Demo
                     HandleRequestMessage(msg);
                     break;
             }
+        }
+
+        private void HandleChangeStateMessage(ChangeStateMessage msg)
+        {
+            State = msg.Value;
         }
 
         private void HandleExceptionMessage(ExceptionMessage msg)

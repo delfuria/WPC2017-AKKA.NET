@@ -22,6 +22,9 @@ namespace AKKA.Library.Demo
         {
             switch (message)
             {
+                case ForwardMessage msg:
+                    HandleForwardMessage(msg);
+                    break;
                 case SimpleMessage msg:
                     HandleSimpleMessage(msg);
                     break;
@@ -60,6 +63,14 @@ namespace AKKA.Library.Demo
             Console.WriteLine($"Prefix:{_prefix} - Message:{msg.Value} " +
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}\n");
+        }
+        private void HandleForwardMessage(ForwardMessage msg)
+        {
+            //Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");
+            Console.WriteLine($"Prefix:{_prefix} - Message:{msg.Value} " +
+                              $"\nreceived by {Context.Self.Path}" +
+                              $"\nsender {Sender.Path}\n");
+            Sender.Tell("Ok");
         }
     }
 }

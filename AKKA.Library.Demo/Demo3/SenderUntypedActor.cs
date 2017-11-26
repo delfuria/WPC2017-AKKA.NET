@@ -15,7 +15,8 @@ namespace AKKA.Library.Demo
             get
             {
                 if (_firstUntyped == null)
-                    _firstUntyped = Context.ActorSelection($"/user/FirstUntypedActor")
+                    //_firstUntyped = Context.ActorSelection($"/user/FirstUntypedActor")
+                _firstUntyped = Context.ActorSelection($"akka://test/system/testActor2/FirstUntypedActor")
                                             .ResolveOne(TimeSpan.FromSeconds(2))
                                             .Result;
 
@@ -42,6 +43,9 @@ namespace AKKA.Library.Demo
                 case SimpleMessage msg:
                     HandleSimpleMessage(msg);
                     break;
+                case ForwardMessage msg:
+                    HandleForwardMessage(msg);
+                    break;
                 default:
                     break;
             }
@@ -62,6 +66,16 @@ namespace AKKA.Library.Demo
                               $"\n");
             FirstUntyped.Tell(msg);
 
+        }
+        private void HandleForwardMessage(ForwardMessage msg)
+        {
+            //Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");
+            Console.WriteLine($"Message:{msg.Value} " +
+                              $"\nreceived by {Context.Self.Path}" +
+                              $"\nsender {Sender.Path}" +
+                              $"\nforwarded to {FirstUntyped.Path}" +
+                              $"\n");
+            FirstUntyped.Forward(msg);
         }
     }
 }
