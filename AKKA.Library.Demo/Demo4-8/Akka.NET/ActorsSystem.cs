@@ -83,14 +83,14 @@ namespace AKKA.Library.Demo
 							{
 							  ""System.Object"" = hyperion
 							}
-							deployment 
-							{
-									  # this nested section will be accessed by akka.actor.deployment
-									  # used to configure our ChartingActor
-									  /SimpleActor {
-										 # causes ChartingActor to run on the UI thread for WinForms
-										dispatcher = akka.actor.synchronized-dispatcher
-							}
+							//deployment 
+							//{
+							//		  # this nested section will be accessed by akka.actor.deployment
+							//		  # used to configure our ChartingActor
+							//		  /SimpleActor {
+							//			 # causes ChartingActor to run on the UI thread for WinForms
+							//			dispatcher = akka.actor.task-dispatcher
+							//}
 					   }
 					}");
 		}
