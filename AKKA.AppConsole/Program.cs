@@ -1,26 +1,19 @@
 ﻿using Akka.Actor;
-using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Akka.Configuration;
 using Akka.Pattern;
 using Akka.Routing;
 using AKKA.Library.Demo;
+using System;
 
 namespace AKKA.AppConsole
 {
-	class Program
+	internal class Program
 	{
-		static void Main(string[] args)
+		private static void Main(string[] args)
 		{
-            // All logs goes to %appdata% (Local Folder)
+			// All logs goes to %appdata% (Local Folder)
 
-
-			Demo1Simple();
+			//Demo1Simple();
 			//Demo2Props();
 			//Demo3SimpleActorSystem();
 			//Demo4FullSystem();
@@ -44,7 +37,6 @@ namespace AKKA.AppConsole
 				//var res = await responseActor.Ask(new RequestMessage() { Number = -10 }, TimeSpan.FromSeconds(2));
 				var responseNumber = ((ResponseMessage)res).Number;
 				Console.WriteLine($"Response1:{responseNumber}");
-
 			}
 			catch (Exception ex)
 			{
@@ -52,26 +44,28 @@ namespace AKKA.AppConsole
 			}
 			Console.ReadLine();
 		}
+
 		private static void Demo8Router()
 		{
-		    Console.WriteLine("Creating SimpleActor with Router (RoundRobin policy)");
-            var props = SimpleActor.CreateProps().WithRouter(new RoundRobinPool(2));
+			Console.WriteLine("Creating SimpleActor with Router (RoundRobin policy)");
+			var props = SimpleActor.CreateProps().WithRouter(new RoundRobinPool(2));
 			var simple = ActorsSystem.Instance.ActorOf(props, "SimpleActor");
 
 			Console.WriteLine("Press enter to start");
 			Console.ReadLine();
 			simple.Tell(new ActorMessage(10));
 			Console.ReadLine();
-			simple.Tell(new ActorMessage(20));
+			simple.Tell(new ActorMessage(10));
 			Console.ReadLine();
-			simple.Tell(new ActorMessage(30));
+			simple.Tell(new ActorMessage(10));
 			Console.ReadLine();
-			simple.Tell(new ActorMessage(40));
+			simple.Tell(new ActorMessage(10));
 			Console.ReadLine();
 		}
+
 		private static void Demo7Persistence()
 		{
-		    Console.WriteLine("Creating SimplepersistentActor");
+			Console.WriteLine("Creating SimplepersistentActor");
 			var simple = ActorsSystem.Instance.ActorOf(SimplePersistentActor.CreateProps(), "SimplePersistentActor");
 			Console.WriteLine("Press enter to start send messages");
 			Console.ReadLine();
@@ -79,25 +73,25 @@ namespace AKKA.AppConsole
 			Console.ReadLine();
 			simple.Tell(new ActorMessage(10));
 
-		    Console.WriteLine("Press enter to send messages that cause Exception");
-            Console.ReadLine();
+			Console.WriteLine("Press enter to send messages that cause Exception");
+			Console.ReadLine();
 			simple.Tell(new RaiseExceptionMessage(new Exception()));
-            Console.WriteLine("Exception raised, state retrived from snapshot");
+			Console.WriteLine("Exception raised, state retrived from snapshot");
 			Console.ReadLine();
 			simple.Tell(new ActorMessage(10));
 			Console.ReadLine();
 		}
+
 		private static void Demo6BackSupervision()
 		{
-
-		    Console.WriteLine("Creating SimpleActor Props with BackOff Supervisor");
-            var childProps = SimpleActor.CreateProps();
+			Console.WriteLine("Creating SimpleActor Props with BackOff Supervisor");
+			var childProps = SimpleActor.CreateProps();
 
 			var supervisor = BackoffSupervisor.Props(
 				Backoff.OnFailure(
 						childProps: childProps,
 						childName: "SimpleActor",
-						minBackoff: TimeSpan.FromSeconds(5),
+						minBackoff: TimeSpan.FromSeconds(3),
 						maxBackoff: TimeSpan.FromSeconds(60),
 						randomFactor: 0.2)
 					.WithAutoReset(TimeSpan.FromSeconds(160)));
@@ -114,61 +108,60 @@ namespace AKKA.AppConsole
 			Console.ReadLine();
 			simple.Tell(new ExceptionMessage());
 			Console.WriteLine("Exception Raised");
-			Console.ReadLine();
 		}
+
 		private static void Demo5Supervision()
 		{
-		    Console.WriteLine("Get Actor System from singleton Instance");
-		    Console.WriteLine("and creating SimpleActor");
-            var simple = ActorsSystem.Instance.ActorOf(SimpleActor.CreateProps(), "SimpleActor");
-
+			Console.WriteLine("Get Actor System from singleton Instance");
+			Console.WriteLine("and creating SimpleActor");
+			var simple = ActorsSystem.Instance.ActorOf(SimpleActor.CreateProps(), "SimpleActor");
 
 			Console.WriteLine("Press enter to start sending message");
 			Console.ReadLine();
 			simple.Tell(new ActorMessage(10));
-		    Console.WriteLine("Press enter to send message that cause resume (actor will not restart)");
-            Console.ReadLine();
+			Console.WriteLine("Press enter to send message that cause resume (actor will not restart)");
+			Console.ReadLine();
 
 			simple.Tell(new RaiseExceptionMessage(new FormatException()));
 			Console.ReadLine();
 			simple.Tell(new ActorMessage(10));
 
-		    Console.WriteLine("Press enter to send message that cause restart (actor will restart)");
+			Console.WriteLine("Press enter to send message that cause restart (actor will restart)");
 
-            Console.ReadLine();
+			Console.ReadLine();
 			simple.Tell(new RaiseExceptionMessage(new NullReferenceException()));
 			Console.ReadLine();
 			simple.Tell(new ActorMessage(10));
 
-		    Console.WriteLine("Press enter to send message that cause Stop (actor will stop)");
-            Console.ReadLine();
+			Console.WriteLine("Press enter to send message that cause Stop (actor will stop)");
+			Console.ReadLine();
 			simple.Tell(new RaiseExceptionMessage(new Exception()));
-			Console.ReadLine();
-			simple.Tell(new ActorMessage(10));
-			Console.ReadLine();
+			//Console.ReadLine();
+			//simple.Tell(new ActorMessage(10));
 		}
+
 		private static void Demo4FullSystem()
 		{
-		    Console.WriteLine("Get Actor System from singleton Instance");
-            var simple = ActorsSystem.Instance.ActorOf(SimpleActor.CreateProps(), "SimpleActor");
+			Console.WriteLine("Get Actor System from singleton Instance");
+			var simple = ActorsSystem.Instance.ActorOf(SimpleActor.CreateProps(), "SimpleActor");
 			Console.WriteLine("Press enter to start sending messages");
 			Console.ReadLine();
 			simple.Tell(new ActorMessage(10));
 			Console.ReadLine();
 			simple.Tell(new ActorMessage(10));
 
-		    Console.WriteLine("Now will send a message that raise and exception");
-            Console.ReadLine();
-			simple.Tell(new ExceptionMessage());
-		    Console.WriteLine("Exception raised, the actor will restart");
-            Console.ReadLine();
-			simple.Tell(new ActorMessage(10));
+			Console.WriteLine("Now will send a message that raise and exception");
 			Console.ReadLine();
+			simple.Tell(new ExceptionMessage());
+			Console.WriteLine("Exception raised, the actor will restart");
+			Console.ReadLine();
+			simple.Tell(new ActorMessage(10));
 		}
+
 		private static void Demo3SimpleActorSystem()
 		{
-		    Console.WriteLine("Get Actor System from singleton Instance");
-            SimpleActorSystem.Name = "Demo-Akka";
+			Console.WriteLine("Get Actor System from singleton Instance");
+			SimpleActorSystem.Name = "Demo-Akka";
 			SimpleActorSystem.Config = ConfigurationFactory.ParseString(@"
 					akka {
 						serializers {
@@ -180,21 +173,21 @@ namespace AKKA.AppConsole
 					}
 					}");
 
-            Console.WriteLine("Creating Actors"); 
-            IActorRef firstReceivedActor = SimpleActorSystem.Instance.ActorOf(Props.Create<FirstReceivedActor>(), "FirstReceivedActor");
+			Console.WriteLine("Creating Actors");
+			IActorRef firstReceivedActor = SimpleActorSystem.Instance.ActorOf(Props.Create<FirstReceivedActor>(), "FirstReceivedActor");
 			IActorRef firstUntypedActor = SimpleActorSystem.Instance.ActorOf(Props.Create(() => new FirstUntypedActor("World")), "FirstUntypedActor");
 			IActorRef senderUntypedActor = SimpleActorSystem.Instance.ActorOf(Props.Create<SenderUntypedActor>(), "SenderUntypedActor");
 
-
-		    Console.WriteLine("Send messages to Actos");
-            firstReceivedActor.Tell("My 1st Message");
+			Console.WriteLine("Send messages to Actos");
+			firstReceivedActor.Tell("My 1st Message");
 			firstReceivedActor.Tell("1st");
 
 			firstUntypedActor.Tell("My 1st Message");
 			firstUntypedActor.Tell("1st");
 
-		    senderUntypedActor.Tell(new SimpleMessage() {Value = "To forward"});
+			senderUntypedActor.Tell(new SimpleMessage() { Value = "To forward" });
 		}
+
 		private static void Demo2Props()
 		{
 			Console.WriteLine("Creating Actor System");
@@ -213,6 +206,7 @@ namespace AKKA.AppConsole
 			firstUntypedActor.Tell("Ok");
 			firstUntypedActor.Tell(new SimpleMessage() { Value = "Hello from WPC2017" });
 		}
+
 		private static void Demo1Simple()
 		{
 			Console.WriteLine("Creating Actor System");

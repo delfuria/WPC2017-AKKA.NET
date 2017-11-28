@@ -1,8 +1,4 @@
 ﻿using Akka.Actor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AKKA.Library.Demo
@@ -20,7 +16,6 @@ namespace AKKA.Library.Demo
             return Props.Create(() => new ResponseActor());
         }
 
-
         protected override void OnReceive(object message)
         {
             base.OnReceive(message);
@@ -29,6 +24,7 @@ namespace AKKA.Library.Demo
                 case RequestMessage msg:
                     HandleRequestMessage(msg);
                     break;
+
                 default:
                     Unhandled(message);
                     break;
@@ -51,7 +47,6 @@ namespace AKKA.Library.Demo
         protected override void ActorInitialize()
 
         {
-
         }
     }
 }

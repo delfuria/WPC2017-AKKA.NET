@@ -1,9 +1,9 @@
-﻿using System;
-using Akka.Actor;
+﻿using Akka.Actor;
 using Akka.Dispatch;
 using Akka.Event;
-using AkkaLogLevel = TracerX.TraceLevel;
+using System;
 using TracerX;
+using AkkaLogLevel = TracerX.TraceLevel;
 
 namespace AKKA.Library.Demo
 {
@@ -13,6 +13,7 @@ namespace AKKA.Library.Demo
     {
         private readonly ILoggingAdapter _log = Context.GetLogger();
         private static Logger _logger;
+
         private static Logger GetLogger(LogEvent logEvent)
         {
             if (_logger == null)
@@ -26,6 +27,7 @@ namespace AKKA.Library.Demo
             }
             return _logger;
         }
+
         private static void Log(LogEvent logEvent, Action<Logger, string> logStatement)
         {
             var logger = GetLogger(logEvent);
@@ -65,25 +67,30 @@ namespace AKKA.Library.Demo
                 case AkkaLogLevel.Fatal:
                     logger.Fatal(parms);
                     break;
+
                 case AkkaLogLevel.Error:
                     logger.Error(parms);
                     break;
+
                 case AkkaLogLevel.Warn:
                     logger.Warn(parms);
                     break;
+
                 case AkkaLogLevel.Info:
                     logger.Info(parms);
                     break;
+
                 case AkkaLogLevel.Debug:
                     logger.Debug(parms);
                     break;
+
                 case AkkaLogLevel.Verbose:
                     logger.Verbose(parms);
                     break;
+
                 default:
                     break;
             }
         }
-
     }
 }

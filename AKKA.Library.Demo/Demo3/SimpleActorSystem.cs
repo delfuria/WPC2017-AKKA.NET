@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
+﻿using Akka.Actor;
 using Akka.Configuration;
-using AKKA.Library.Demo;
 
 namespace AKKA.Library.Demo
 {
@@ -14,6 +7,7 @@ namespace AKKA.Library.Demo
     {
         private static Config _defaultConfig;
         private static Config _config;
+
         public static Config Config
         {
             get
@@ -31,6 +25,7 @@ namespace AKKA.Library.Demo
         }
 
         private static string _name;
+
         public static string Name
         {
             get
@@ -47,6 +42,7 @@ namespace AKKA.Library.Demo
         }
 
         private static ActorSystem _actorSystem;
+
         public static ActorSystem Instance
         {
             get

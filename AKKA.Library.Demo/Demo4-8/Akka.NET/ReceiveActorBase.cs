@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
+﻿using Akka.Actor;
 using Akka.Event;
+using System;
 
 namespace AKKA.Library.Demo
 {
@@ -12,6 +8,7 @@ namespace AKKA.Library.Demo
     {
         private readonly ILoggingAdapter logger = Logging.GetLogger(Context);
         public abstract string Alias { get; }
+
         protected ReceiveActorBase()
         {
             logger.Info($"Actor Created:{GetType()} - UID:{Context.Self.Path.Uid}");
@@ -35,7 +32,7 @@ namespace AKKA.Library.Demo
         {
             base.PostRestart(reason);
             ActorsSystem.Add(Alias, Self);
-            logger.Error(string.Format("Actor PostRestart:{0} - {1}",reason.ToString(), GetType()));
+            logger.Error(string.Format("Actor PostRestart:{0} - {1}", reason.ToString(), GetType()));
             //ActorInitialize();
         }
 

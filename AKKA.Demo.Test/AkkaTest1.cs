@@ -1,6 +1,4 @@
-﻿using System;
-using Akka.Actor;
-using Akka.TestKit;
+﻿using Akka.Actor;
 using Akka.TestKit.VsTest;
 using AKKA.Library.Demo;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -8,12 +6,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace AKKA.Demo.Test
 {
     [TestClass]
-    public class AkkaTest1: TestKit
+    public class AkkaTest1 : TestKit
     {
         [TestMethod]
         public void TestInternalState()
         {
-
             var actor = ActorOfAsTestActorRef<SimpleActor>(SimpleActor.CreateProps());
             var underlyingActor = actor.UnderlyingActor;
             actor.Tell(new ChangeStateMessage(10));

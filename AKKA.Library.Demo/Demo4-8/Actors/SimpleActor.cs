@@ -1,12 +1,6 @@
 ﻿using Akka.Actor;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Akka.Actor;
-using Akka.Pattern;
-using Akka.Routing;
 
 namespace AKKA.Library.Demo
 {
@@ -15,6 +9,7 @@ namespace AKKA.Library.Demo
         public override string Alias => "SimpleActor";
 
         public int State { get; private set; }
+
         public SimpleActor()
         {
         }
@@ -32,15 +27,19 @@ namespace AKKA.Library.Demo
                 case SimpleMessage msg:
                     HandleSimpleMessage(msg);
                     break;
+
                 case ActorMessage msg:
                     HandleActorMessage(msg);
                     break;
+
                 case ChangeStateMessage msg:
                     HandleChangeStateMessage(msg);
                     break;
+
                 case ExceptionMessage msg:
                     HandleExceptionMessage(msg);
                     break;
+
                 case RaiseExceptionMessage msg:
                     HandleRaiseExceptionMessage(msg);
                     break;
@@ -62,10 +61,10 @@ namespace AKKA.Library.Demo
         {
             throw new Exception();
         }
+
         protected override SupervisorStrategy SupervisorStrategy()
         {
-
-            return new OneForOneStrategy(
+            return new AllForOneStrategy(
                 maxNrOfRetries: 2,
                 withinTimeRange: TimeSpan.FromMinutes(2),
                 localOnlyDecider: ex =>
@@ -75,12 +74,19 @@ namespace AKKA.Library.Demo
                     switch (ex)
                     {
                         case FormatException fe:
+                            logger.Info($"Directive  {Directive.Resume}");
                             return Directive.Resume;
+                            break;
                         case NullReferenceException nre:
+                            logger.Info($"Directive  {Directive.Restart}");
                             return Directive.Restart;
+                            break;
                         case Exception e:
+                            logger.Info($"Directive  {Directive.Stop}");
                             return Directive.Stop;
+                            break;
                         default:
+                            logger.Info($"Directive  {Directive.Escalate}");
                             return Directive.Escalate;
                     }
                 });
@@ -101,10 +107,12 @@ namespace AKKA.Library.Demo
 
         private void HandleActorMessage(ActorMessage msg)
         {
-            var sub1 = Context.ActorSelection("akka://AKKA-NET/user//SimpleActor/SimpleSubActor1").ResolveOne(TimeSpan.Zero).Result;
+            //IActorRef sub1 = ActorsSystem.Actors["SimpleSubActor1"];
+            //var sub1 = Context.ActorSelection("akka://AKKA-NET/user//SimpleActor/SimpleSubActor1").ResolveOne(TimeSpan.Zero).Result;
+            var sub1 = Context.ActorSelection("SimpleSubActor1").ResolveOne(TimeSpan.Zero).Result;
             sub1.Tell(msg);
-
         }
+
         private async Task HandleRequestMessage(RequestMessage msg)
         {
             Console.WriteLine("before Ask");
@@ -125,9 +133,7 @@ namespace AKKA.Library.Demo
                 Console.WriteLine("Eccezione timeout");
             }
             Console.WriteLine("Ask");
-
         }
-
 
         protected override void ActorInitialize()
         {

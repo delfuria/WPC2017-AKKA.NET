@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
+﻿using Akka.Actor;
 using Akka.Configuration;
 using AKKA.Library.Demo;
+using System;
 
 namespace AKKA.AppConsole.Remote
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var config = ConfigurationFactory.ParseString(@"
                 akka {
@@ -33,7 +29,6 @@ namespace AKKA.AppConsole.Remote
                 system.ActorOf<SimpleActor>("SimpleActor");
                 Console.ReadLine();
             }
-
         }
     }
 }

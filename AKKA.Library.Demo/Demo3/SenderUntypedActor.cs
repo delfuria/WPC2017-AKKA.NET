@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
+﻿using Akka.Actor;
+using System;
 
 namespace AKKA.Library.Demo
 {
     public class SenderUntypedActor : UntypedActor
     {
         private IActorRef _firstUntyped;
+
         public IActorRef FirstUntyped
         {
             get
@@ -23,14 +20,16 @@ namespace AKKA.Library.Demo
             }
             private set { _firstUntyped = value; }
         }
+
         private IActorRef _firstTestUntyped;
+
         public IActorRef FirstTestUntyped
         {
             get
             {
                 if (_firstTestUntyped == null)
                     _firstTestUntyped = Context.ActorSelection($"../FirstUntypedActor")
-                //_firstTestUntyped = Context.ActorSelection($"akka://test/system/testActor1/FirstUntypedActor")
+                        //_firstTestUntyped = Context.ActorSelection($"akka://test/system/testActor1/FirstUntypedActor")
                         .ResolveOne(TimeSpan.FromSeconds(2))
                         .Result;
 
@@ -49,7 +48,6 @@ namespace AKKA.Library.Demo
             FirstUntyped = firstUntyped;
         }
 
-
         protected override void OnReceive(object message)
         {
             switch (message)
@@ -57,9 +55,11 @@ namespace AKKA.Library.Demo
                 case SimpleMessage msg:
                     HandleSimpleMessage(msg);
                     break;
+
                 case ForwardMessage msg:
                     HandleForwardMessage(msg);
                     break;
+
                 default:
                     break;
             }
@@ -78,8 +78,8 @@ namespace AKKA.Library.Demo
                               $"\nforwarded to {FirstUntyped.Path}" +
                               $"\n");
             FirstUntyped.Tell(msg);
-
         }
+
         private void HandleForwardMessage(ForwardMessage msg)
         {
             Console.WriteLine($"Message:{msg.Value} " +

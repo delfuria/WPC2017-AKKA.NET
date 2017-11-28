@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AKKA.Library.Demo
 {
@@ -14,6 +10,7 @@ namespace AKKA.Library.Demo
         {
             dictionary.AddOrUpdate(key, value, (oldkey, oldvalue) => value);
         }
+
         // Either Add or overwrite
         public static void AddOrUpdate<K, V>(this Dictionary<K, V> dictionary, K key, V value)
         {

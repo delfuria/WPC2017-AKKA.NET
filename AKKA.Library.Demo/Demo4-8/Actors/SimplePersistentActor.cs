@@ -1,11 +1,6 @@
 ﻿using Akka.Actor;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
 using Akka.Persistence;
+using System;
 
 namespace AKKA.Library.Demo
 {
@@ -48,12 +43,15 @@ namespace AKKA.Library.Demo
                 case SaveSnapshotSuccess s:
                     HandleSaveSnapshotSuccess(s);
                     break;
+
                 case SaveSnapshotFailure f:
                     HandleSaveSnapshotFailure(f);
                     break;
+
                 case RaiseExceptionMessage msg:
                     HandleRaiseExceptionMessage();
                     break;
+
                 case ActorMessage msg:
                     HandleActorMessage(msg);
                     Persist(_value, e =>
@@ -66,7 +64,6 @@ namespace AKKA.Library.Demo
                             });
 
                     break;
-
             }
         }
 
@@ -89,7 +86,6 @@ namespace AKKA.Library.Demo
         {
             state = e;
         }
-
 
         private void HandleActorMessage(ActorMessage msg)
         {

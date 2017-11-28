@@ -12,6 +12,7 @@ namespace AKKA.Library.Demo
         {
             return new string(chatToRepeat, repeat);
         }
+
         public static string Repeat(this string stringToRepeat, int repeat)
         {
             var builder = new StringBuilder(repeat * stringToRepeat.Length);
@@ -21,27 +22,33 @@ namespace AKKA.Library.Demo
             }
             return builder.ToString();
         }
+
         public static string Right(this string value, int length)
         {
             return value.Substring(value.Length - length);
         }
+
         public static string Left(this string value, int length)
         {
             return value.Substring(0, length);
         }
+
         public static string Chr(this int value)
         {
             return value.ToStr();
         }
+
         public static string Chr(this char value)
         {
             return value.ToStr();
         }
+
         public static IEnumerable<string> Split(this string str, int chunkSize)
         {
             return Enumerable.Range(0, str.Length / chunkSize)
                 .Select(i => str.Substring(i * chunkSize, chunkSize));
         }
+
         public static string ToStr(this int num)
         {
             return ((char)num).ToStr();
@@ -75,6 +82,7 @@ namespace AKKA.Library.Demo
             }
             return result.ToString();
         }
+
         public static string CamelCaseStringSplitBySpace(this string value)
         {
             if (value == null)
@@ -95,6 +103,7 @@ namespace AKKA.Library.Demo
 
             return res;
         }
+
         public static string TrimBlank(this string value)
         {
             string ret = null;
@@ -148,6 +157,7 @@ namespace AKKA.Library.Demo
             var base64EncodedBytes = Convert.FromBase64String(base64EncodedData);
             return Encoding.UTF8.GetString(base64EncodedBytes);
         }
+
         public static string TakeAndPad(this string str, int padTo)
         {
             string ret = str;
@@ -155,8 +165,6 @@ namespace AKKA.Library.Demo
             return ret;
         }
     }
-
-
 
     //public static class BlockingCollectionEx<WCFMessageBase>
     //{

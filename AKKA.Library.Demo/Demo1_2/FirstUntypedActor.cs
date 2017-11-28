@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
+﻿using Akka.Actor;
+using System;
 
 namespace AKKA.Library.Demo
 {
     public class FirstUntypedActor : UntypedActor
     {
         private string _prefix = "";
+
         public FirstUntypedActor()
         {
         }
+
         public FirstUntypedActor(string prefix)
         {
             _prefix = prefix;
@@ -25,15 +23,19 @@ namespace AKKA.Library.Demo
                 case ForwardMessage msg:
                     HandleForwardMessage(msg);
                     break;
+
                 case SimpleMessage msg:
                     HandleSimpleMessage(msg);
                     break;
+
                 case string str when str.Length < 5:
                     HandleShortStringMessage(str);
                     break;
+
                 case string str:
                     HandleStringMessage(str);
                     break;
+
                 default:
                     break;
             }
@@ -50,6 +52,7 @@ namespace AKKA.Library.Demo
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}\n");
         }
+
         private void HandleStringMessage(string msg)
         {
             //Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");
@@ -57,6 +60,7 @@ namespace AKKA.Library.Demo
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}\n");
         }
+
         private void HandleSimpleMessage(SimpleMessage msg)
         {
             //Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");
@@ -64,6 +68,7 @@ namespace AKKA.Library.Demo
                               $"\nreceived by {Context.Self.Path}" +
                               $"\nsender {Sender.Path}\n");
         }
+
         private void HandleForwardMessage(ForwardMessage msg)
         {
             //Console.WriteLine($"Message:{msg} \nreceived by {Context.Self.Path}\n");

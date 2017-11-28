@@ -1,10 +1,5 @@
 ﻿using Akka.Actor;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Akka.Actor;
 
 namespace AKKA.Library.Demo
 {
@@ -30,6 +25,7 @@ namespace AKKA.Library.Demo
                 case ActorMessage msg:
                     HandleActorMessage(msg);
                     break;
+
                 case RaiseExceptionMessage msg:
                     HandleRaiseExceptionMessage(msg);
                     break;
@@ -43,7 +39,7 @@ namespace AKKA.Library.Demo
             Console.WriteLine($"The current state is now {_value}");
             Console.WriteLine($"path {Self.Path}");
             Console.WriteLine($"randomUID {Self.Path.Uid}");
-            Console.WriteLine($"sender {Sender.Path}\n" );
+            Console.WriteLine($"sender {Sender.Path}\n");
         }
 
         private void HandleRaiseExceptionMessage(RaiseExceptionMessage msg)
@@ -56,7 +52,6 @@ namespace AKKA.Library.Demo
 
         protected override void ActorInitialize()
         {
-            
         }
     }
 }
