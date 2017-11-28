@@ -90,6 +90,11 @@
     <Compile Include="Demo4-8\Messages\ActorMessage.cs" />
     <Compile Include="Demo4-8\Messages\AkkaMessageBase.cs" />
     <Compile Include="Demo4-8\Messages\RaiseExceptionMessage.cs" />
+    <Compile Include="Demo7.5\WriteMessage.cs" />
+    <Compile Include="Demo7.5\ReliableDeliveryAck.cs" />
+    <Compile Include="Demo7.5\ReliableDeliveryEnvelope.cs" />
+    <Compile Include="Demo7.5\AtLeastOnceDeliveryActor.cs" />
+    <Compile Include="Demo7.5\RecipientActor.cs" />
     <Compile Include="Demo9\RequestMessage.cs" />
     <Compile Include="Demo9\ResponseActor.cs" />
     <Compile Include="Demo9\ResponseMessage.cs" />
