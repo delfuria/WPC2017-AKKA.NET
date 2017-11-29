@@ -11,10 +11,8 @@ namespace AKKA.Library.Demo
     public class SimpleDeliveryActor : AtLeastOnceDeliveryActor
     {
         public override string PersistenceId => "SimpleDeliveryActor";
-        private IActorRef _destinationActor;
+        private readonly IActorRef _destinationActor;
         private ICancelable _recurringMessageSend;
-
-        const string Characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         public SimpleDeliveryActor(IActorRef destinationActor)
         {
@@ -33,16 +31,6 @@ namespace AKKA.Library.Demo
                     break;
 
             }
-            //if (message is MessageConfirmed)
-            //{
-            //    Handler((MessageConfirmed)message);
-            //    return true;
-            //}
-            //else if (message is MessageSent)
-            //{
-            //    Handler((MessageSent)message);
-            //    return true;
-            //}
             return false;
         }
 
@@ -60,17 +48,6 @@ namespace AKKA.Library.Demo
                     break;
 
             }
-
-            //if (message is string)
-            //{
-            //    Persist(new MessageSent((string)message), Handler);
-            //    return true;
-            //}
-            //else if (message is Confirm)
-            //{
-            //    Persist(new MessageConfirmed(((Confirm)message).DeliveryId), Handler);
-            //    return false;
-            //}
             return false;
         }
 

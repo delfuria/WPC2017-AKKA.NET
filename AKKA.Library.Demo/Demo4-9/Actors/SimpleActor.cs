@@ -64,7 +64,7 @@ namespace AKKA.Library.Demo
 
         protected override SupervisorStrategy SupervisorStrategy()
         {
-            return new AllForOneStrategy(
+            return new OneForOneStrategy(
                 maxNrOfRetries: 2,
                 withinTimeRange: TimeSpan.FromMinutes(2),
                 localOnlyDecider: ex =>
