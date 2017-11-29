@@ -3,18 +3,21 @@ using Akka.Actor;
 
 namespace AKKA.Library.Demo
 {
-    public class RecipientActor : ReceiveActor
+    public class SimpleRecipientActor : ReceiveActor
     {
-        public RecipientActor()
+        public SimpleRecipientActor()
         {
-            Receive<ReliableDeliveryEnvelope<WriteMessage>>(write =>
+            Receive<EnvelopeMessage<WriteMessage>>(write =>
             {
-                Console.WriteLine("Received message {0} [id: {1}] from {2} - accept?", write.Message.Content, write.MessageId, Sender);
+                Console.WriteLine($"Received message {write.Message.Content} [id: {write.MessageId}] " +
+                                  $"\nat {DateTime.Now}"+
+                                  $"\nfrom {Sender}" +
+                                  $"\n - accept?");
                 var response = Console.ReadLine()?.ToLowerInvariant();
                 if (!string.IsNullOrEmpty(response) && (response.Equals("yes") || response.Equals("y")))
                 {
                     // confirm delivery only if the user explicitly agrees
-                    Sender.Tell(new ReliableDeliveryAck(write.MessageId));
+                    Sender.Tell(new AckMessage(write.MessageId));
                     Console.WriteLine("Confirmed delivery of message ID {0}", write.MessageId);
                 }
                 else

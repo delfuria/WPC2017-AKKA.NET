@@ -1,8 +1,8 @@
 ﻿namespace AKKA.Library.Demo
 {
-    public class ReliableDeliveryEnvelope<TMessage>
+    public class EnvelopeMessage<TMessage>
     {
-        public ReliableDeliveryEnvelope(TMessage message, long messageId)
+        public EnvelopeMessage(TMessage message, long messageId)
         {
             Message = message;
             MessageId = messageId;

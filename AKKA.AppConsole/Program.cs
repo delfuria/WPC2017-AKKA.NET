@@ -20,7 +20,7 @@ namespace AKKA.AppConsole
             //Demo5Supervision();
             //Demo6BackSupervision();
             //Demo7Persistence();
-            //Demo7_5();
+            Demo7_5();
             //Demo8Router();
             //Demo10Ask();
 
@@ -31,11 +31,14 @@ namespace AKKA.AppConsole
         {
             var actorSystem = ActorSystem.Create("AtLeastOnceDeliveryDemo");
 
-            var recipientActor = actorSystem.ActorOf(Props.Create(() => new RecipientActor()), "RecipientActor");
+            //var recipientActor = actorSystem.ActorOf(Props.Create(() => new RecipientActor()), "RecipientActor");
+            var recipientActor = actorSystem.ActorOf(Props.Create(() => new SimpleRecipientActor()), "SimpleRecipientActor");
             var atLeastOnceDeliveryActor =
-                actorSystem.ActorOf(AtLeastOnceDeliveryActor.CreateProps(recipientActor), "AtLeastOnceDeliveryActor");
+            //actorSystem.ActorOf(AtLeastOnceDeliveryActor.CreateProps(recipientActor), "AtLeastOnceDeliveryActor");
             //actorSystem.ActorOf(Props.Create(() => new AtLeastOnceDeliveryActor(recipientActor)), "AtLeastOnceDeliveryActor");
+                actorSystem.ActorOf(Props.Create(() => new SimpleDeliveryActor(recipientActor)), "SimpleDeliveryActor");
 
+            atLeastOnceDeliveryActor.Tell(new WriteMessage("1st Message"));
             actorSystem.WhenTerminated.Wait();
 
         }

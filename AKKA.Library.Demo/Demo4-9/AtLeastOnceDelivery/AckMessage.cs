@@ -1,9 +1,9 @@
 ﻿namespace AKKA.Library.Demo
 {
 
-    public class ReliableDeliveryAck
+    public class AckMessage
     {
-        public ReliableDeliveryAck(long messageId)
+        public AckMessage(long messageId)
         {
             MessageId = messageId;
         }
