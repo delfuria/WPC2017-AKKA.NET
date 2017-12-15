@@ -35,8 +35,8 @@ namespace AKKA.AppConsole
 			try
 			{
                 Console.WriteLine("Ask to actor");
-				var res = await responseActor.Ask(new RequestMessage() { Number = -10 });
-				//var res = await responseActor.Ask(new RequestMessage() { Number = -10 }, TimeSpan.FromSeconds(2));
+				//var res = await responseActor.Ask(new RequestMessage() { Number = -10 });
+				var res = await responseActor.Ask(new RequestMessage() { Number = -10 }, TimeSpan.FromSeconds(2));
 				var responseNumber = ((ResponseMessage)res).Number;
 				Console.WriteLine($"Response1:{responseNumber}");
 			}

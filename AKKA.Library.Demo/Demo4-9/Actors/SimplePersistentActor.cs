@@ -11,7 +11,7 @@ namespace AKKA.Library.Demo
 
         public SimplePersistentActor()
         {
-            DeleteSnapshots(SnapshotSelectionCriteria.Latest);
+            //DeleteSnapshots(SnapshotSelectionCriteria.Latest);
         }
 
         public static Props CreateProps()
